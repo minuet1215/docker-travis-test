@@ -16,3 +16,17 @@ services:
     stdin_open: true
 
     command: "npm run start"
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+
+    volumes:
+      - /app/node_modules
+      - .:/app
+    
+    command: "npm run test"
+
+    depends_on:
+      - react
